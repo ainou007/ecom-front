@@ -27,14 +27,11 @@ const productSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.records = action.payload;
-
       state.loading = TLoading.succeeded;
       state.error = null;
     });
     builder.addCase(getProducts.rejected, (state, action) => {
-      console.log(action.payload);
       state.loading = TLoading.failed;
       state.error = action.payload as string;
     });
