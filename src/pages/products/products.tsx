@@ -11,12 +11,19 @@ import Product from '@/pages/products/product';
 const Products = () => {
   const params = useParams();
   const { cat_prefix } = params;
+
+  const cartItems = useAppSelector((state) => {
+    return state.cartSlice.items;
+  });
+
   const dispatch = useAppDispatch();
+
   const {
     records: productRecords,
     loading: loadingProducts,
     error: errorProducts,
   } = useAppSelector((state) => state.productSlice);
+
   useEffect(() => {
     dispatch(getProducts(cat_prefix as string));
     return () => {
@@ -24,10 +31,15 @@ const Products = () => {
     };
   }, [dispatch, params]);
 
+  const recordsWithQuantity = productRecords.map((product) => ({
+    ...product,
+    quantity: cartItems[product.id] || 0,
+  }));
+
   return (
     <Loading loading={loadingProducts} error={errorProducts}>
       <GridList
-        records={productRecords}
+        records={recordsWithQuantity}
         renderItem={(record) => <Product product={record} />}
       />
     </Loading>
