@@ -27,9 +27,9 @@ const productSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      state.records = action.payload;
       state.loading = TLoading.succeeded;
       state.error = null;
+      state.records = action.payload;
     });
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = TLoading.failed;

@@ -5,7 +5,7 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 // type item = { id: string; quantity: number };
 
 type TInitialState = {
-  items: { [key: number]: number };
+  items: { [key: string]: number };
   products: (TProduct & { quantity: number })[];
 };
 
