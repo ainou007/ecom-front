@@ -35,10 +35,10 @@
         {
             "id": 1,
             "title": "Regular Fit Jersey top",
-            "price": 249.00,
+            "price": 229.00,
             "cat_prefix": "men",
             "img": "https://eg.hm.com/assets/styles/HNM/14482498/6103a8463876770c30cdba3535b7be1f333315fe/2/image-thumb__3464789__product_listing/cb91f8f128ac2125e0ec3a008a2e8d2497d15434.jpg",
-            "max": 3
+            "max": 2
         },
         {
             "id": 2,
@@ -81,7 +81,7 @@
             "max": 2
         },
         {
-            "id": 9,
+            "id": 7,
             "title": "Pile all-in-one suit with ears",
             "price": 500.00,
             "cat_prefix": "baby",
@@ -89,12 +89,20 @@
             "max": 8
         },
         {
-            "id": 17,
+            "id": 8,
             "title": "Regular Fit football shirt",
             "price": 449.00,
             "cat_prefix": "sport",
             "img": "https://eg.hm.com/assets/styles/HNM/14472541/cb9d35f1480ce5c8b0be39ad7fd35ab9f8004ce0/2/image-thumb__3453052__product_listing/70408034bd9792a93abbc8ad322565337f535e24.jpg",
             "max": 10
+        },
+        {
+            "id": 9,
+            "title": "Regular Fit Jersey top",
+            "price": 229.00,
+            "cat_prefix": "men",
+            "img": "https://eg.hm.com/assets/styles/HNM/14482498/6103a8463876770c30cdba3535b7be1f333315fe/2/image-thumb__3464789__product_listing/cb91f8f128ac2125e0ec3a008a2e8d2497d15434.jpg",
+            "max": 2
         }
     ]
 }
