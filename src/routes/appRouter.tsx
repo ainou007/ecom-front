@@ -6,6 +6,7 @@ import Home from '@/pages/home/home';
 import Login from '@/pages/login';
 import Products from '@/pages/products/products';
 import Register from '@/pages/register';
+import ShoppingCart from '@/pages/shopping-cart/ShoppingCart';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'categories', element: <Categories /> },
+      { path: 'shopping-cart', element: <ShoppingCart /> },
       {
         path: 'products/:cat_prefix',
         element: <Products />,

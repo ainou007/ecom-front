@@ -40,7 +40,7 @@ const Products = () => {
     <Loading loading={loadingProducts} error={errorProducts}>
       <GridList
         records={recordsWithQuantity}
-        renderItem={(record) => <Product product={record} />}
+        renderItem={(record) => <Product {...record} />}
       />
     </Loading>
   );

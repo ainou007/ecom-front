@@ -32,17 +32,17 @@ const TopNavbar = () => {
         <div className='container text-gray-100 font-semibold flex items-center justify-between'>
           <Logo />
           <div className='flex gap-5 items-center'>
-            <div className='rounded-md relative flex items-center justify-center size-7 bg-white/5'>
+            <Link
+              to={'shopping-cart'}
+              className='rounded-md relative flex items-center justify-center size-7 bg-white/5'>
               <div
                 className={`${
                   animate ? 'animate-pulse' : 'animate-none'
                 } duration-300 text-[11px] flex  items-center justify-center size-5 bg-primary -right-3 -top-3 absolute rounded-full text-white`}>
                 {totalCart}
               </div>
-              <a href='#'>
-                <Basket className='w-5' />
-              </a>
-            </div>
+              <Basket className='w-5' />
+            </Link>
             <ul className='flex gap-2'>
               <li>
                 <Link to={'login'} className={buttonVariants({ size: 'sm' })}>
