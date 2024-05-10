@@ -4,6 +4,7 @@ import { getCategories } from '@/store/category/categoryActions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useEffect } from 'react';
 import Category from './Category';
+import Heading from '@/components/header/Heading';
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -21,9 +22,12 @@ const Categories = () => {
     }
   }, [dispatch]);
   return (
-    <Loading error={categoriesError} loading={loadingCategories}>
-      <GridList records={categoryRecords} renderItem={(record) => <Category category={record} />} />
-    </Loading>
+    <>
+      <Heading title='Categories' />
+      <Loading error={categoriesError} loading={loadingCategories}>
+        <GridList records={categoryRecords} renderItem={(record) => <Category category={record} />} />
+      </Loading>
+    </>
   );
 };
 export default Categories;

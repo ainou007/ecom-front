@@ -5,6 +5,7 @@ import getWishlistItems from '@/store/wishlist/actions/getWishlistItems';
 import { useEffect } from 'react';
 import Product from '../products/Product';
 import { productsCleanUp } from '@/store/wishlist/wishListSlice';
+import Heading from '@/components/header/Heading';
 
 const Wishlist = () => {
   const dispatch = useAppDispatch();
@@ -23,9 +24,12 @@ const Wishlist = () => {
   }, [dispatch]);
 
   return itemsId.length > 0 ? (
-    <Loading loading={loading} error={error}>
-      <GridList records={wishlist} renderItem={(record) => <Product {...record} />} />
-    </Loading>
+    <>
+      <Heading title='Wishlist' />
+      <Loading loading={loading} error={error}>
+        <GridList records={wishlist} renderItem={(record) => <Product {...record} />} />
+      </Loading>
+    </>
   ) : (
     'Your wishlist is empty !!'
   );

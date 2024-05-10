@@ -7,6 +7,7 @@ import { productsCleanup } from '@/store/product/productSlice';
 import GridList from '@/components/ecommerce/GridList';
 import Loading from '@/components/feedback/loading/Loading';
 import Product from '@/pages/products/Product';
+import Heading from '@/components/header/Heading';
 
 const Products = () => {
   const params = useParams();
@@ -40,9 +41,12 @@ const Products = () => {
   }));
 
   return (
-    <Loading loading={loadingProducts} error={errorProducts}>
-      <GridList records={recordsWithQuantity} renderItem={(record) => <Product {...record} />} />
-    </Loading>
+    <>
+      <Heading title={`${cat_prefix} Products`} />
+      <Loading loading={loadingProducts} error={errorProducts}>
+        <GridList records={recordsWithQuantity} renderItem={(record) => <Product {...record} />} />
+      </Loading>
+    </>
   );
 };
 export default Products;

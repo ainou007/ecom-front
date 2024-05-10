@@ -21,7 +21,7 @@ const Product = memo(({ id, img, title, price, cat_prefix, max, quantity, isLike
   const getStilItems = useCallback(() => max - (quantity ?? 0), [max, quantity]);
 
   const addTocart = () => {
-    if (!getStilItems() < 1) {
+    if (getStilItems() > 0) {
       setisClicked(true);
       setTimeout(() => {
         setisClicked(false);
@@ -73,7 +73,7 @@ const Product = memo(({ id, img, title, price, cat_prefix, max, quantity, isLike
       <div className='flex justify-between'>
         <p className='font-semibold'>
           {price.toFixed(2)}$ /{' '}
-          {getStilItems() < 1 ? <span className='text-red-500'>Out of Stock</span> : <span>Stile {getStilItems()} </span>}
+          {getStilItems() === 0 ? <span className='text-red-500'>Out of Stock</span> : <span>Stile {getStilItems()} </span>}
         </p>
 
         <Badge className='text-xs leading-3 pb-1' variant='outline'>
@@ -83,7 +83,7 @@ const Product = memo(({ id, img, title, price, cat_prefix, max, quantity, isLike
       <Separator className='my-4' />
       <div className='flex justify-between items-center font-semibold'>
         <div>188 order | $15044</div>
-        <Button disabled={isClicked || getStilItems() < 1} onClick={addTocart} className='' size={'sm'}>
+        <Button disabled={isClicked || getStilItems() === 0} onClick={addTocart} className='' size={'sm'}>
           {isClicked ? (
             <>
               <LuLoader2 className='animate-spin' /> Loading
