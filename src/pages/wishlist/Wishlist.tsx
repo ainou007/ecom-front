@@ -3,7 +3,7 @@ import Loading from '@/components/feedback/loading/Loading';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import getWishlistItems from '@/store/wishlist/actions/getWishlistItems';
 import { useEffect } from 'react';
-import Product from '../products/product';
+import Product from '../products/Product';
 import { productsCleanUp } from '@/store/wishlist/wishListSlice';
 
 const Wishlist = () => {
