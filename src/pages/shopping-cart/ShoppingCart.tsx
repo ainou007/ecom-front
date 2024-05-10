@@ -9,10 +9,7 @@ import { removeCarteItem, updateQuantity } from '@/store/cart/cartSlice';
 const ShoppingCart = () => {
   const dispatch = useAppDispatch();
 
-  const { items, products, loading, error } = useAppSelector(
-    (state) => state.cartSlice
-  );
-
+  const { items, products, loading, error } = useAppSelector((state) => state.cartSlice);
   useEffect(() => {
     dispatch(getCarteItemsAction());
   }, [dispatch]);

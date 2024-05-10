@@ -65,8 +65,8 @@ const cartSlice = createSlice({
 const getCartTotal = createSelector(
   (state: RootState) => state.cartSlice.items,
   (items) => {
-    const total = Object.values(items).reduce((acc, item) => {
-      return acc + item;
+    const total = Object.values(items).reduce((acc) => {
+      return acc + 1;
     }, 0);
     return total;
   }

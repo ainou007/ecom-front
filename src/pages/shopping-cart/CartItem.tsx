@@ -14,24 +14,12 @@ type TCartItemProps = {
 };
 
 const CartItem = React.memo(
-  ({
-    id,
-    title,
-    img,
-    max,
-    price,
-    quantity,
-    changeQuantityHandler,
-    removeItemHandler,
-  }: TCartItemProps) => {
+  ({ id, title, img, max, price, quantity, changeQuantityHandler, removeItemHandler }: TCartItemProps) => {
     //
 
     console.log('render');
 
-    const total = useCallback(
-      (price: number) => quantity * price,
-      [quantity, max]
-    );
+    const total = useCallback((price: number) => quantity * price, [quantity, max]);
 
     const incrementQuqntity = useCallback(() => {
       if (quantity < max) {
@@ -61,28 +49,18 @@ const CartItem = React.memo(
         </div>
         <div className='flex flex-col justify-between'>
           <div>
-            <p className='text-gray-800 font-semibold text-lg'>
-              {`${title} / ${price}$`}
-            </p>
+            <p className='text-gray-800 font-semibold text-lg'>{`${title} / ${price}$`}</p>
             <p className='text-gray-700 font-semibold'>
               Total <span> {total(price || 0)} $</span>
             </p>
           </div>
           <div>
             <div className='mb-2 font-semibold'>Quantity</div>
-            <Button
-              disabled={quantity === max}
-              onClick={incrementQuqntity}
-              variant={'outline'}
-              size={'icon'}>
+            <Button disabled={quantity === max} onClick={incrementQuqntity} variant={'outline'} size={'icon'}>
               +
             </Button>
             <span className='p-2 select-none'> {quantity} </span>
-            <Button
-              disabled={quantity <= 0}
-              onClick={decrementQuqntity}
-              variant={'outline'}
-              size={'icon'}>
+            <Button disabled={quantity <= 0} onClick={decrementQuqntity} variant={'outline'} size={'icon'}>
               -
             </Button>
           </div>
