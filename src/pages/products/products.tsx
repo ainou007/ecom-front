@@ -12,6 +12,8 @@ const Products = () => {
   const params = useParams();
   const { cat_prefix } = params;
 
+  const wishlistItems = useAppSelector((state) => state.wishListSlice.itemsId);
+
   const cartItems = useAppSelector((state) => {
     return state.cartSlice.items;
   });
@@ -34,14 +36,12 @@ const Products = () => {
   const recordsWithQuantity = productRecords.map((product) => ({
     ...product,
     quantity: cartItems[product.id] || 0,
+    isLiked: wishlistItems.includes(product.id),
   }));
 
   return (
     <Loading loading={loadingProducts} error={errorProducts}>
-      <GridList
-        records={recordsWithQuantity}
-        renderItem={(record) => <Product {...record} />}
-      />
+      <GridList records={recordsWithQuantity} renderItem={(record) => <Product {...record} />} />
     </Loading>
   );
 };

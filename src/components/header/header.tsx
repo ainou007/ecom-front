@@ -1,5 +1,5 @@
-import Navbar from '@/components/header/navbar/navbar';
-import TopNavbar from '@/components/header/navbar/topNavbar';
+import Navbar from './navbar/Navbar';
+import TopNavbar from './navbar/TopNavbar';
 
 const Header = () => {
   return (
