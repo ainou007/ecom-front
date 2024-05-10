@@ -4,7 +4,7 @@ import { getCarteItemsAction } from '@/store/cart/getCarteItemsAction';
 import CartItem from './CartItem';
 import Total from './Total';
 import Loading from '@/components/feedback/loading/Loading';
-import { removeCarteItem, updateQuantity } from '@/store/cart/cartSlice';
+import { ShoppingCartCleanUp, removeCarteItem, updateQuantity } from '@/store/cart/cartSlice';
 import Heading from '@/components/header/Heading';
 
 const ShoppingCart = () => {
@@ -13,6 +13,10 @@ const ShoppingCart = () => {
   const { items, products, loading, error } = useAppSelector((state) => state.cartSlice);
   useEffect(() => {
     dispatch(getCarteItemsAction());
+
+    return () => {
+      dispatch(ShoppingCartCleanUp());
+    };
   }, [dispatch]);
 
   const productsList = products.map((product) => {
