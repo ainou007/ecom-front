@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getProducts } from '@/store/product/productActions';
 import { productsCleanup } from '@/store/product/productSlice';
 
-import GridList from '@/components/ecommerce/gridList';
+import GridList from '@/components/ecommerce/GridList';
 import Loading from '@/components/feedback/loading/Loading';
 import Product from '@/pages/products/product';
 

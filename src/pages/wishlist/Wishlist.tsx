@@ -1,4 +1,4 @@
-import GridList from '@/components/ecommerce/gridList';
+import GridList from '@/components/ecommerce/GridList';
 import Loading from '@/components/feedback/loading/Loading';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import getWishlistItems from '@/store/wishlist/actions/getWishlistItems';

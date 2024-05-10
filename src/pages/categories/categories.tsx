@@ -1,9 +1,9 @@
-import GridList from '@/components/ecommerce/gridList';
+import GridList from '@/components/ecommerce/GridList';
 import Loading from '@/components/feedback/loading/Loading';
-import Category from '@/pages/categories/category';
 import { getCategories } from '@/store/category/categoryActions';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useEffect } from 'react';
+import Category from './Category';
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -22,10 +22,7 @@ const Categories = () => {
   }, [dispatch]);
   return (
     <Loading error={categoriesError} loading={loadingCategories}>
-      <GridList
-        records={categoryRecords}
-        renderItem={(record) => <Category category={record} />}
-      />
+      <GridList records={categoryRecords} renderItem={(record) => <Category category={record} />} />
     </Loading>
   );
 };
