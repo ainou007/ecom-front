@@ -1,7 +1,7 @@
 import { TCategory } from '@/lib/types';
 import { Link } from 'react-router-dom';
 
-const Category = ({ category }: { category: TCategory }) => {
+const CategoryItem = ({ category }: { category: TCategory }) => {
   const { img, prefix, title } = category;
   return (
     <Link to={`/products/${prefix}`}>
@@ -15,4 +15,4 @@ const Category = ({ category }: { category: TCategory }) => {
     </Link>
   );
 };
-export default Category;
+export default CategoryItem;

@@ -1,4 +1,5 @@
 import { TCategory, TLoading } from '@/lib/types';
+import { isString } from '@/lib/utils';
 import { getCategories } from '@/store/category/categoryActions';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -29,7 +30,9 @@ const categorySlice = createSlice({
     });
     builder.addCase(getCategories.rejected, (state, action) => {
       state.loading = TLoading.failed;
-      state.error = action.payload as string;
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
     });
   },
 });

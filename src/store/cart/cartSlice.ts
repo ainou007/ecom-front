@@ -2,6 +2,7 @@ import { TLoading, TProduct } from '@/lib/types';
 import { RootState } from '@/store';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { getCarteItemsAction } from './getCarteItemsAction';
+import { isString } from '@/lib/utils';
 
 type TInitialState = {
   items: { [key: string]: number };
@@ -58,7 +59,7 @@ const cartSlice = createSlice({
     });
     builder.addCase(getCarteItemsAction.rejected, (state, action) => {
       state.loading = TLoading.failed;
-      if (action.payload && typeof action.payload == 'string') {
+      if (isString(action.payload)) {
         state.error = action.payload;
       }
     });

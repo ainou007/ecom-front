@@ -1,41 +1,11 @@
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { useCallback, useEffect } from 'react';
-import { getCarteItemsAction } from '@/store/cart/getCarteItemsAction';
-import CartItem from './CartItem';
-import Total from './Total';
+import CartItem from '@/components/shopping-cart/CartItem';
+import Total from '@/components/shopping-cart/Total';
 import Loading from '@/components/feedback/loading/Loading';
-import { ShoppingCartCleanUp, removeCarteItem, updateQuantity } from '@/store/cart/cartSlice';
 import Heading from '@/components/header/Heading';
+import useShoppingCart from './useShoppingCart';
 
 const ShoppingCart = () => {
-  const dispatch = useAppDispatch();
-
-  const { items, products, loading, error } = useAppSelector((state) => state.cartSlice);
-  useEffect(() => {
-    dispatch(getCarteItemsAction());
-
-    return () => {
-      dispatch(ShoppingCartCleanUp());
-    };
-  }, [dispatch]);
-
-  const productsList = products.map((product) => {
-    return { ...product, quantity: items[product.id] };
-  });
-
-  const changeQuantityHandler = useCallback(
-    (id: number, quantity: number) => {
-      dispatch(updateQuantity({ id, quantity }));
-    },
-    [dispatch]
-  );
-
-  const removeItemHandler = useCallback(
-    (id: number) => {
-      dispatch(removeCarteItem(id));
-    },
-    [dispatch]
-  );
+  const { loading, error, productsList, changeQuantityHandler, removeItemHandler } = useShoppingCart();
 
   return (
     <>

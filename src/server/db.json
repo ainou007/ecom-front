@@ -105,11 +105,5 @@
       "max": 2
     }
   ],
-  "wishlist": [
-    {
-      "userId": 1,
-      "productId": 5,
-      "id": 2
-    }
-  ]
+  "wishlist": []
 }

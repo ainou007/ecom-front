@@ -1,46 +1,20 @@
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import type { TProduct } from '@/lib/types';
-import { addToCart } from '@/store/cart/cartSlice';
-import { useAppDispatch } from '@/store/hooks';
-import { memo, useCallback, useState } from 'react';
+import { memo } from 'react';
 import { AiFillStar, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { LuLoader2 } from 'react-icons/lu';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { Badge } from '@/components/ui/badge';
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
-import actLikeToggle from '@/store/wishlist/actions/likeToggleAct';
+import useProductItem from './useProductItem';
 
-const Product = memo(({ id, img, title, price, cat_prefix, max, quantity, isLiked }: TProduct) => {
-  // For Animation
-  const [isClicked, setisClicked] = useState(false);
-
-  // isLoading Like
-  const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useAppDispatch();
-  const getStilItems = useCallback(() => max - (quantity ?? 0), [max, quantity]);
-
-  const addTocart = () => {
-    if (getStilItems() > 0) {
-      setisClicked(true);
-      setTimeout(() => {
-        setisClicked(false);
-        dispatch(addToCart(id));
-      }, 2000);
-    }
-  };
-
-  const likeToggleHandler = () => {
-    setIsLoading(true);
-    dispatch(actLikeToggle(id))
-      .unwrap()
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
-      });
-  };
+const ProductItem = memo(({ id, img, title, price, cat_prefix, max, quantity, isLiked }: TProduct) => {
+  const { isLoading, likeToggleHandler, getStilItems, isClicked, addTocart } = useProductItem({
+    id,
+    max,
+    quantity,
+  });
 
   return (
     <div className='p-3 shadow'>
@@ -51,7 +25,7 @@ const Product = memo(({ id, img, title, price, cat_prefix, max, quantity, isLike
           disabled={isLoading}
           variant={'ghost'}
           onClick={likeToggleHandler}
-          className='absolute top-2 right-2 cursor-pointer hover:text-red-700'>
+          className='absolute top-2 right-2 cursor-pointer hover:text-red-700 hover:bg-transparent'>
           {isLoading ? (
             <AiOutlineLoading3Quarters className='animate-spin' />
           ) : isLiked ? (
@@ -98,4 +72,4 @@ const Product = memo(({ id, img, title, price, cat_prefix, max, quantity, isLike
     </div>
   );
 });
-export default Product;
+export default ProductItem;

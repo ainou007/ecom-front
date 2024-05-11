@@ -1,31 +1,70 @@
-import MainLayout from '@/layouts/MainLayout';
-import Error from '@/pages/Error';
-import AboutUs from '@/pages/about-us/AboutUs';
-import Categories from '@/pages/categories/Categories';
-import Home from '@/pages/home/Home';
-import Login from '@/pages/Login';
-import Products from '@/pages/products/Products';
-import Register from '@/pages/Register';
-import ShoppingCart from '@/pages/shopping-cart/ShoppingCart';
-import Wishlist from '@/pages/wishlist/Wishlist';
+const MainLayout = lazy(() => import('@/layouts/MainLayout'));
+const Error = lazy(() => import('@/pages/Error'));
+const AboutUs = lazy(() => import('@/pages/about-us/AboutUs'));
+const Categories = lazy(() => import('@/pages/categories/Categories'));
+const Home = lazy(() => import('@/pages/home/Home'));
+const Login = lazy(() => import('@/pages/Login'));
+const Products = lazy(() => import('@/pages/products/Products'));
+const Register = lazy(() => import('@/pages/Register'));
+const ShoppingCart = lazy(() => import('@/pages/shopping-cart/ShoppingCart'));
+const Wishlist = lazy(() => import('@/pages/wishlist/Wishlist'));
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 const router = createBrowserRouter([
   {
     path: '',
-    element: <MainLayout />,
+    element: (
+      <Suspense fallback={'Loading, pleas wait ...'}>
+        <MainLayout />
+      </Suspense>
+    ),
     errorElement: <Error />,
     children: [
-      { index: true, element: <Home /> },
-      { path: 'categories', element: <Categories /> },
-      { path: 'shopping-cart', element: <ShoppingCart /> },
-      { path: 'wishlist', element: <Wishlist /> },
+      {
+        index: true,
+        element: (
+          <Suspense fallback={'Loading, pleas wait ...'}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'categories',
+        element: (
+          <Suspense fallback={'Loading, pleas wait ...'}>
+            <Categories />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'shopping-cart',
+        element: (
+          <Suspense fallback={'Loading, pleas wait ...'}>
+            <ShoppingCart />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'wishlist',
+        element: (
+          <Suspense fallback={'Loading, pleas wait ...'}>
+            <Wishlist />
+          </Suspense>
+        ),
+      },
       {
         path: 'products/:cat_prefix',
-        element: <Products />,
+        element: (
+          <Suspense fallback={'Loading, pleas wait ...'}>
+            <Products />
+          </Suspense>
+        ),
+
         loader: ({ params }) => {
           const { cat_prefix } = params;
           if (
-            // this is just a commande for testing
+            // this is just a command for testing
             typeof cat_prefix !== 'string' ||
             !/^[a-zA-Z]+$/.test(cat_prefix)
           ) {
@@ -38,11 +77,32 @@ const router = createBrowserRouter([
           return true;
         },
       },
-      { path: 'about-us', element: <AboutUs /> },
+      {
+        path: 'about-us',
+        element: (
+          <Suspense fallback={'Loading, pleas wait ...'}>
+            <AboutUs />
+          </Suspense>
+        ),
+      },
     ],
   },
-  { path: 'login', element: <Login /> },
-  { path: 'register', element: <Register /> },
+  {
+    path: 'login',
+    element: (
+      <Suspense fallback={'Loading, pleas wait ...'}>
+        <Login />
+      </Suspense>
+    ),
+  },
+  {
+    path: 'register',
+    element: (
+      <Suspense fallback={'Loading, pleas wait ...'}>
+        <Register />
+      </Suspense>
+    ),
+  },
   //   {
   //     path: '*',
   //     element: <PageNotFound />,

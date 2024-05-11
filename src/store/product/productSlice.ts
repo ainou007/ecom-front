@@ -1,4 +1,5 @@
 import { TLoading, TProduct } from '@/lib/types';
+import { isString } from '@/lib/utils';
 import { getProducts } from '@/store/product/productActions';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -33,7 +34,9 @@ const productSlice = createSlice({
     });
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = TLoading.failed;
-      state.error = action.payload as string;
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
     });
   },
 });

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import actLikeToggle from './actions/likeToggleAct';
 import getWishlistItems from './actions/getWishlistItems';
 import { TLoading, TProduct } from '@/lib/types';
+import { isString } from '@/lib/utils';
 
 type TInitialState = {
   itemsId: number[];
@@ -59,7 +60,9 @@ const wishlist = createSlice({
     });
 
     builder.addCase(getWishlistItems.rejected, (state, action) => {
-      state.error = action.payload as string;
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
       state.loading = TLoading.failed;
     });
   },

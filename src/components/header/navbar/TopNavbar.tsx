@@ -1,8 +1,7 @@
 import { buttonVariants } from '@/components/ui/button';
 import Logo from '@/components/ui/logo';
 import { Link } from 'react-router-dom';
-import CarteList from './CarteList';
-import WishList from './WishList';
+import LeftSide from './LeftSide';
 
 const TopNavbar = () => {
   return (
@@ -11,8 +10,7 @@ const TopNavbar = () => {
         <div className='container text-gray-100 font-semibold flex items-center justify-between'>
           <Logo />
           <div className='flex gap-5 items-center'>
-            <WishList />
-            <CarteList />
+            <LeftSide />
             <ul className='flex gap-2'>
               <li>
                 <Link to={'login'} className={buttonVariants({ size: 'sm' })}>

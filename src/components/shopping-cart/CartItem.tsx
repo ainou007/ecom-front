@@ -15,10 +15,6 @@ type TCartItemProps = {
 
 const CartItem = React.memo(
   ({ id, title, img, max, price, quantity, changeQuantityHandler, removeItemHandler }: TCartItemProps) => {
-    //
-
-    console.log('render');
-
     const total = useCallback((price: number) => quantity * price, [quantity, max]);
 
     const incrementQuqntity = useCallback(() => {
